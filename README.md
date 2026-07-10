@@ -211,17 +211,13 @@ git push origin feature/new-feature
 ---
 
 
-## **📜 License**
-
-Licensed under the **MIT License**.
-
-
----
-
-
 ```html
 <div align="center">
 ```
+
+###
+
+This project is forked from my friend's repo. This aims to add functionality over to the Firefox side.
 
 ### **⭐ Consider giving it a star to help boost project's reach!**
 
