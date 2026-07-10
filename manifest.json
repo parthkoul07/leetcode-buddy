@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode Buddy",
+  "version": "0.1.0",
+  "description": "Adaptive AI hints while you solve LeetCode problems.",
+  "permissions": ["storage", "alarms"],
+  "host_permissions": ["https://generativelanguage.googleapis.com/*"],
+
+  
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "LeetCode Buddy"
+  },
+
+
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.com/problems/*"],
+      "js": ["src/content/injected.js"],
+      "world": "MAIN",
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://leetcode.com/problems/*"],
+      "js": ["src/content/isolated.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "background": {
+  "service_worker": "src/background.js"
+  }
+  
+}

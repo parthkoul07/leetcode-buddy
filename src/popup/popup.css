@@ -1,0 +1,135 @@
+/* Deep, sleek dark background with a modern monospace font stack */
+body {
+    width: 280px;
+    margin: 0;
+    padding: 16px;
+    background-color: #13141c; /* Deep dark slate */
+    color: #a9b1d6; /* Soft blue-gray text */
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, Monaco, monospace;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+/* Crisp heading with a subtle gold accent line */
+h3 {
+    margin: 0 0 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #c0caf5;
+    border-bottom: 1px solid #292e42;
+    padding-bottom: 8px;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+/* Adds a tiny, sharp golden underline to the heading for depth */
+h3::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #eab700; 
+}
+
+/* Small, uppercase labels */
+label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #565f89;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Dark, inset-looking inputs */
+input,
+select {
+    width: 100%;
+    padding: 8px 10px;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #1a1b26;
+    color: #c0caf5;
+    border: 1px solid #292e42;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 13px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Cool blue focus state keeps the inputs grounded */
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #3d59a1;
+    box-shadow: 0 0 8px rgba(61, 89, 161, 0.4);
+    background-color: #1f2335;
+}
+
+/* Contrasting Gold Accent Button */
+button {
+    width: 100%;
+    margin-top: 16px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #eab700; /* Striking Tech Gold */
+    border: 1px solid #eab700;
+    border-radius: 4px;
+    font-family: inherit;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+/* Full fill and glowing gold on hover */
+button:hover {
+    background-color: #eab700;
+    color: #13141c; /* Text turns dark for readability */
+    box-shadow: 0 0 10px rgba(234, 183, 0, 0.3);
+}
+
+/* Terminal green status text */
+#status {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #9ece6a; 
+    min-height: 16px;
+    text-align: center;
+}
+
+/* Password Toggle Layout */
+.input-container {
+    position: relative;
+    width: 100%; 
+}
+
+.input-container input {
+    width: 100%;
+    padding-right: 36px;
+}
+
+/* Subtle eye icon */
+#togglePassword {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #565f89;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+/* Eye icon lights up gold when hovered */
+#togglePassword:hover {
+    color: #eab700; 
+}

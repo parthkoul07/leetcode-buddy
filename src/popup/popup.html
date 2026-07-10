@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h3>LeetCode Buddy Settings</h3>
+
+  <label for="apiKey">Model API Key</label>
+
+  <div class="input-container">
+    <input type="password" id="apiKey" placeholder="abcxyz...">
+    <i class="fa-solid fa-eye" id="togglePassword"></i>
+  </div>
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <label for="model">Model</label>
+  <select id="model">
+    <option value="qwen/qwen3-32b">groq (default)</option>
+    <option value="custom">Custom</option>
+  </select>
+  <input type="text" id="customModel" placeholder="model id" style="display:none; margin-top:5px;">
+
+  <label for="timerMinutes">Timer (minutes)</label>
+  <input type="number" id="timerMinutes" min="1" value="10">
+
+  <button id="save">Save</button>
+  <div id="status"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
