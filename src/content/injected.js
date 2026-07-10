@@ -3,7 +3,7 @@
   function waitForMonacoModel(timeoutMs = 10000) {
     return new Promise((resolve, reject) => {
       const startTime = Date.now();
-      
+      // Interval set to set interval
       const interval = setInterval(() => {
         // If 10 seconds pass, give up so we don't loop forever
         if (Date.now() - startTime > timeoutMs) {
