@@ -3,32 +3,32 @@
 
 <head>
   <meta charset="UTF-8">
+  <title>Welcome to LeetCode Buddy</title>
   <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
-<body>
-  <h3>LeetCode Buddy Settings</h3>
+<body class="onboarding" data-onboarding="true">
+  <h3>Welcome to LeetCode Buddy</h3>
+  <p class="welcome">I’ll give you small, timely hints while you solve. Add your Groq API key to get started.</p>
 
   <label for="apiKey">Groq API Key</label>
-
   <div class="input-container">
-    <input type="password" id="apiKey" placeholder="gsk_...">
+    <input type="password" id="apiKey" placeholder="gsk_..." autofocus>
     <i class="fa-solid fa-eye" id="togglePassword"></i>
   </div>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <label for="model">Model</label>
   <select id="model">
     <option value="qwen/qwen3-32b">Qwen3 32B (Groq default)</option>
     <option value="custom">Custom</option>
   </select>
-  <input type="text" id="customModel" placeholder="model id" style="display:none; margin-top:5px;">
+  <input type="text" id="customModel" placeholder="Groq model ID" style="display:none; margin-top:5px;">
 
   <label for="timerMinutes">Timer (minutes)</label>
   <input type="number" id="timerMinutes" min="1" value="10">
 
-  <button id="save">Save</button>
+  <button id="save">Save and start</button>
   <div id="status"></div>
 
   <script src="popup.js"></script>

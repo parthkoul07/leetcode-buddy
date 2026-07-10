@@ -31,26 +31,55 @@ const shadow = host.attachShadow({ mode: 'open' });
 
 shadow.innerHTML = `
   <style>
-    :host { all: initial; }
-    /* Update the .panel class to use a monospace font */
+    :host {
+      all: initial;
+      --panel-bg: #262626;
+      --header-bg: #303030;
+      --text: #eff1f6;
+      --muted: #a3a3a3;
+      --border: #4a4a4a;
+      --code-bg: #3a3a3a;
+      --code-text: #8dd8ff;
+      --tag-bg: #424242;
+      --button-bg: #ffa116;
+      --button-text: #1f1f1f;
+      --disabled: #555;
+      --error: #ff8d8d;
+      --shadow: 0 8px 24px rgba(0, 0, 0, .35);
+    }
+    :host([data-theme="light"]) {
+      --panel-bg: #ffffff;
+      --header-bg: #f7f7f7;
+      --text: #262626;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --code-bg: #f3f4f6;
+      --code-text: #2563eb;
+      --tag-bg: #f3f4f6;
+      --button-bg: #ffa116;
+      --button-text: #1f1f1f;
+      --disabled: #d1d5db;
+      --error: #dc2626;
+      --shadow: 0 8px 24px rgba(0, 0, 0, .14);
+    }
     .panel {
       position: fixed; bottom: 20px; right: 20px; z-index: 999999;
-      font-family: 'Consolas', 'Fira Code', 'Courier New', monospace; /* Hacker font */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 13px;
-      width: 280px; background: #1e1e1e; color: #eee;
-      border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      width: 280px; background: var(--panel-bg); color: var(--text);
+      border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow);
       overflow: hidden;
     }
     code {
-      background: #333333;
-      color: #9cdcfe; /* Classic VS Code light blue */
+      background: var(--code-bg); color: var(--code-text);
       padding: 2px 4px;
       border-radius: 4px;
-      font-family: inherit;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     }
     .header {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 10px 12px; background: #2b2b2b; cursor: pointer;
+      padding: 10px 12px; background: var(--header-bg); cursor: pointer;
+      border-bottom: 1px solid var(--border);
     }
     .header span { font-weight: 600; }
     .body { padding: 12px; max-height: 260px; overflow-y: auto; display: none; }
@@ -58,16 +87,16 @@ shadow.innerHTML = `
     .hint-text { line-height: 1.4; white-space: pre-wrap; }
     .level-tag {
       display: inline-block; font-size: 11px; padding: 2px 6px;
-      border-radius: 6px; margin-bottom: 6px; background: #3a3a3a;
+      border-radius: 6px; margin-bottom: 6px; background: var(--tag-bg);
     }
     button.trigger {
       width: 100%; margin-top: 10px; padding: 7px; border: none;
-      border-radius: 6px; background: #4c8bf5; color: white;
+      border-radius: 6px; background: var(--button-bg); color: var(--button-text);
       cursor: pointer; font-size: 13px;
     }
-    button.trigger:disabled { background: #555; cursor: default; }
-    .error { color: #ff8080; }
-    .empty { color: #999; }
+    button.trigger:disabled { background: var(--disabled); cursor: default; }
+    .error { color: var(--error); }
+    .empty { color: var(--muted); }
   </style>
   <div class="panel">
     <div class="header" id="lcbuddy-toggle">
@@ -88,6 +117,34 @@ const els = {
   content: shadow.getElementById('lcbuddy-content'),
   btn: shadow.getElementById('lcbuddy-btn'),
 };
+
+function isDarkColor(color) {
+  const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+  if (!match || (match[4] !== undefined && Number(match[4]) === 0)) return null;
+
+  const [, red, green, blue] = match.map(Number);
+  // Relative luminance: values below the midpoint read as a dark surface.
+  return (red * 0.2126 + green * 0.7152 + blue * 0.0722) < 140;
+}
+
+function syncTheme() {
+  const colors = [
+    getComputedStyle(document.body).backgroundColor,
+    getComputedStyle(document.documentElement).backgroundColor,
+  ];
+  const dark = colors.map(isDarkColor).find((value) => value !== null)
+    ?? window.matchMedia('(prefers-color-scheme: dark)').matches;
+  host.dataset.theme = dark ? 'dark' : 'light';
+}
+
+syncTheme();
+const themeObserver = new MutationObserver(syncTheme);
+const themeAttributes = {
+  attributes: true,
+  attributeFilter: ['class', 'style', 'data-theme'],
+};
+themeObserver.observe(document.documentElement, themeAttributes);
+themeObserver.observe(document.body, themeAttributes);
 
 els.toggle.addEventListener('click', () => {
   els.body.classList.toggle('open');

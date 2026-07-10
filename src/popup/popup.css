@@ -3,11 +3,25 @@ body {
     width: 280px;
     margin: 0;
     padding: 16px;
-    background-color: #13141c; /* Deep dark slate */
-    color: #a9b1d6; /* Soft blue-gray text */
+    background-color: #13141c;
+    /* Deep dark slate */
+    color: #a9b1d6;
+    /* Soft blue-gray text */
     font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, Monaco, monospace;
     font-size: 13px;
     box-sizing: border-box;
+}
+
+/* The first-run page uses the same form, with room for a short welcome. */
+body.onboarding {
+    width: min(100% - 32px, 440px);
+    margin: 48px auto;
+}
+
+.welcome {
+    margin: -6px 0 20px;
+    color: #a9b1d6;
+    line-height: 1.5;
 }
 
 /* Crisp heading with a subtle gold accent line */
@@ -30,7 +44,7 @@ h3::after {
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: #eab700; 
+    background-color: #eab700;
 }
 
 /* Small, uppercase labels */
@@ -77,7 +91,8 @@ button {
     padding: 10px;
     cursor: pointer;
     background-color: transparent;
-    color: #eab700; /* Striking Tech Gold */
+    color: #eab700;
+    /* Striking Tech Gold */
     border: 1px solid #eab700;
     border-radius: 4px;
     font-family: inherit;
@@ -91,7 +106,8 @@ button {
 /* Full fill and glowing gold on hover */
 button:hover {
     background-color: #eab700;
-    color: #13141c; /* Text turns dark for readability */
+    color: #13141c;
+    /* Text turns dark for readability */
     box-shadow: 0 0 10px rgba(234, 183, 0, 0.3);
 }
 
@@ -99,7 +115,7 @@ button:hover {
 #status {
     margin-top: 12px;
     font-size: 12px;
-    color: #9ece6a; 
+    color: #9ece6a;
     min-height: 16px;
     text-align: center;
 }
@@ -107,7 +123,7 @@ button:hover {
 /* Password Toggle Layout */
 .input-container {
     position: relative;
-    width: 100%; 
+    width: 100%;
 }
 
 .input-container input {
@@ -123,7 +139,7 @@ button:hover {
     transform: translateY(-50%);
     cursor: pointer;
     color: #565f89;
-    display: flex; 
+    display: flex;
     align-items: center;
     justify-content: center;
     transition: color 0.2s ease;
@@ -131,5 +147,5 @@ button:hover {
 
 /* Eye icon lights up gold when hovered */
 #togglePassword:hover {
-    color: #eab700; 
+    color: #eab700;
 }

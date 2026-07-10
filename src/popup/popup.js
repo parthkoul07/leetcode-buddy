@@ -35,7 +35,9 @@ els.save.addEventListener('click', () => {
     timerMinutes: Math.max(1, parseInt(els.timerMinutes.value, 10) || 10),
   };
   chrome.storage.local.set({ settings }, () => {
-    els.status.textContent = 'Saved.';
+    els.status.textContent = document.body.dataset.onboarding === 'true'
+      ? 'Saved — you are ready to solve.'
+      : 'Saved.';
     setTimeout(() => (els.status.textContent = ''), 1500);
   });
 });
